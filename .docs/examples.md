@@ -94,29 +94,29 @@ func main() {
 ```go
 package main
 
-import "./fiber"
+import "github.com/gofiber/fiber"
 
 type Data struct {
-  Name string
-  Age  int
-}
-
-func main() {
-  app := fiber.New()
-
-  app.Get("/json", func(c *fiber.Ctx) {
-    data := Data{
-      Name: "John", `json:"name"`
-      Age:  20, `json:"age"`
-    }
-    err := c.JSON(data)
-    if err != nil {
-      c.SendStatus(500)
-    }
-  })
-
-  app.Listen(8080)
-}
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+  }
+  
+  func main() {
+	app := fiber.New()
+  
+	app.Get("/json", func(c *fiber.Ctx) {
+	  data := Data{
+		Name: "John",
+		Age:  20, 
+	  }
+	  err := c.JSON(data)
+	  if err != nil {
+		c.SendStatus(500)
+	  }
+	})
+  
+	app.Listen(8080)
+  }
 ```
 
 #### TLS/HTTPS
